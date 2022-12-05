@@ -21,5 +21,22 @@
     </select>
     <button type="submit">Отправить</button>
 </form>
+<hr>
+<?php
+include "db.php";
+$list = getPDO()->query('SELECT * FROM students')->fetchAll(PDO::FETCH_OBJ);
+foreach ($list as $studentObject) {
+    echo "<div id=" . $studentObject->ID . ">" . $studentObject->surname . ' ' . $studentObject->name . '    
+    <input type="button" value="Удалить" onclick="deleteMem(this)"></div><br>';
+} ?>
+<script>
+    function deleteMem(elem) {
+        if (confirm('Вы уверены, что хотите удалить запись "' + elem.parentNode.innerText + '"?')) {
+            location.href = "removeMem.php?id=" + elem.parentNode.id;
+        } else {
+            console.log('Изменений не произошло');
+        }
+    }
+</script>
 </body>
 </html>

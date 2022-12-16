@@ -60,7 +60,7 @@ foreach ($list as $studentObject) {
         if (confirm('Вы уверены, что хотите удалить запись "' + elem.parentNode.innerText + '"?')) {
             location.href = "removeMem.php?id=" + elem.parentNode.id;
         } else {
-            console.log('Изменений не произошло');
+            console.log('Изменений не произошло!');
         }
     }
 </script>

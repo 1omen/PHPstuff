@@ -25,10 +25,36 @@
 <?php
 include "db.php";
 $list = getPDO()->query('SELECT * FROM students')->fetchAll(PDO::FETCH_OBJ);
+
+// Тут терется id
+//$initials = [];
+//foreach ($list as $studentObject) {
+//    $initials[] = $studentObject->surname . ' ' . mb_substr($studentObject->name, 0,1) . ".";
+//}
+//
+//foreach ($initials as $imya) {
+//    echo "<div>" . $imya . "</div>";
+//}
+
+// не доделал
+//foreach ($list as $studentObject) {
+//    array_walk($studentObject, function ($value, $key){
+//        if ($key == "name")
+//            $value
+//    });
+//}
+
+// главный вариант
+//foreach ($list as $studentObject) {
+//    echo "<div id=" . $studentObject->ID . ">" . $studentObject->surname . ' ' . $studentObject->name . '
+//    <input type="button" value="Удалить" onclick="deleteMem(this)"></div><br>';
+//}
+
 foreach ($list as $studentObject) {
-    echo "<div id=" . $studentObject->ID . ">" . $studentObject->surname . ' ' . $studentObject->name . '    
-    <input type="button" value="Удалить" onclick="deleteMem(this)"></div><br>';
-} ?>
+    echo "<div id=" . $studentObject->ID . ">" . $studentObject->surname . ' ' . mb_substr($studentObject->name, 0,1) . ". " .
+        '<input type="button" value="Удалить" onclick="deleteMem(this)"></div><br>';
+}
+?>
 <script>
     function deleteMem(elem) {
         if (confirm('Вы уверены, что хотите удалить запись "' + elem.parentNode.innerText + '"?')) {
